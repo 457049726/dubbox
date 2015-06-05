@@ -57,6 +57,7 @@
 				#if($tool.checkUrl($currentUser,"/governance/services"))<li><a href="$rootContextPath.getURI("/governance/services")">$i18n.get("services")</a></li>#end
 				#if($tool.checkUrl($currentUser,"/governance/applications"))<li><a href="$rootContextPath.getURI("/governance/applications")">$i18n.get("applications")</a></li>#end
 				#if($tool.checkUrl($currentUser,"/governance/addresses"))<li><a href="$rootContextPath.getURI("/governance/addresses")">$i18n.get("addresses")</a></li>#end
+				#if($tool.checkUrl($currentUser,"/governance/nodes"))<li><a href="$rootContextPath.getURI("/governance/nodes")">$i18n.get("nodes")</a></li>#end
 				#if($tool.checkUrl($currentUser,"/governance/providers"))<li><a href="$rootContextPath.getURI("/governance/providers")">$i18n.get("providers")</a></li>#end
 				#if($tool.checkUrl($currentUser,"/governance/consumers"))<li><a href="$rootContextPath.getURI("/governance/consumers")">$i18n.get("consumers")</a></li>#end
 				#if($tool.checkUrl($currentUser,"/governance/routes"))<li><a href="$rootContextPath.getURI("/governance/routes")">$i18n.get("routes")</a></li>#end

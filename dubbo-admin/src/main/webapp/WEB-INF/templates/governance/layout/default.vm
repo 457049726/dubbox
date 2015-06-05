@@ -83,14 +83,14 @@
 		<div class="tab" id="Tab2">
 			#set($tabs = [])
 			#if($service && $service != '*')
-				#set($tabs = ["providers", "consumers", "applications", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
+				#set($tabs = ["providers", "consumers", "nodes","applications", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
 			#elseif($address && $address != '*')
-				#set($tabs = ["providers", "consumers", "routes", "accesses", "weights"])
+				#set($tabs = ["providers", "consumers", "nodes","routes", "accesses", "weights"])
 			#elseif($application && $application != '*')
 				#set($tabs = ["services", "addresses", "overrides"])
 			#else
 				#if($_type != "services" && $_type != "applications" && $_type != "addresses")
-					#set($tabs = ["providers", "consumers", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
+					#set($tabs = ["providers", "consumers", "nodes","routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
 				#end
 			#end
 			#if($tabs.size() > 0)
