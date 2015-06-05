@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+						http://www.springframework.org/schema/jee 
+						http://www.springframework.org/schema/jee/spring-jee-3.0.xsd 
+						http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-lazy-init="true">
+
+	<description>节点监控配置</description>
+	
+	<!-- db监控节点 -->
+	<bean id="dbMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.DbMonitorConf" >
+		<property name="name" value="db138" />
+		<property name="isOpen" value="0" />
+		<property name="timeOut" value="30" />
+		<property name="interval" value="60" />
+		<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="pwd" value="piao" />
+		<property name="username" value="dream_cai_piao" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1521:orcl" />
+	</bean>
+	
+	<!-- 服务监控节点 -->
+	<bean id="servMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.ServMonitorConf" >
+		<property name="name" value="rpcServ" />
+		<property name="isOpen" value="0" />
+		<property name="timeOut" value="30" />
+		<property name="interval" value="30" />
+		<property name="url" value="url" />
+		<property name="servReference" value="newdreamRpcService" />
+	</bean>
+	
+	<!-- web监控节点 -->
+	<bean id="webMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.WebMonitorConf" >
+		<property name="name" value="rpcServ" />
+		<property name="isOpen" value="0" />
+		<property name="timeOut" value="30" />
+		<property name="interval" value="30" />
+		<property name="url" value="url" />
+		<property name="method" value="post" />
+	</bean>
+	
+	<!-- 缓存监控节点 -->
+	<bean id="memcachedMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.MemcachedMonitorConf" >
+		<property name="name" value="rpcServ" />
+		<property name="isOpen" value="0" />
+		<property name="timeOut" value="30" />
+		<property name="interval" value="30" />
+		<property name="url" value="url" />
+	</bean>
+	
+	<!-- 监控节点配置 -->
+	<bean id="nodeMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.NodeMonitorConf" >
+		<property name="name" value="monitorApp" />
+		<property name="ip" value="127.0.0.1" />
+		<property name="nodeMonitorMap">
+			<map>
+    			<entry key="dbMonitorConf">
+     				<ref bean="dbMonitorConf" />
+    			</entry>
+    			<entry key="servMonitorConf">
+    				<ref bean="servMonitorConf" />
+    			</entry>
+    			<entry key="webMonitorConf">
+    				<ref bean="webMonitorConf" />
+    			</entry>
+    			<entry key="memcachedMonitorConf">
+    				<ref bean="memcachedMonitorConf" />
+    			</entry>
+   			</map>
+		</property>
+	</bean>
+ 	 
+
+	
+	
+	 
+    
+
+</beans>

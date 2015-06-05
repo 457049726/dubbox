@@ -32,11 +32,19 @@
 		<skip_maven_deploy>false</skip_maven_deploy>
 	</properties>
 	<dependencies>
+	
+	
 		<dependency>
 			<groupId>com.dream.portal.api</groupId>
 			<artifactId>newdream-portal-api</artifactId>
 			<version>0.0.1-RELEASE</version>
 		</dependency>
+		<dependency>
+				<groupId>com.dream.portal.dubboext</groupId>
+				<artifactId>newdream-portal-dubboext</artifactId>
+				<version>0.0.1-RELEASE</version>
+		</dependency>	
+	
 	
 		<dependency>
 			<groupId>com.alibaba</groupId>
