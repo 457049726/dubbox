@@ -47,6 +47,8 @@
     
     <!-- 应用资源 -->
     <beans:import resource="classpath:META-INF/spring/dubbo-admin.xml" />
+    <!-- 监控资源 -->
+    <beans:import resource="classpath:META-INF/spring/newdream-portal-node-conf.xml" />
     
     <!-- 综合设置。 -->
     <services:webx-configuration>
