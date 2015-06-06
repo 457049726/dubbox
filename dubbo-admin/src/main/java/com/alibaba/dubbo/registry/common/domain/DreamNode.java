@@ -3,18 +3,28 @@ package com.alibaba.dubbo.registry.common.domain;
 import java.util.Date;
 
 public class DreamNode extends Entity {
+	
+	/**
+	 * 节点id
+	 */
+	private Long id;
 
 	/**
 	 * 节点名
 	 */
 	private String name;
+	
+	/**
+	 * 节点类型
+	 */
+	private String type;
 
 	/**
 	 * 节点ip
 	 */
 	private String ip;
 
-
+//	name,ip,result,state,success,usedTime,monitorTime
 	/**
 	 * 监控结果描述
 	 */
@@ -39,6 +49,24 @@ public class DreamNode extends Entity {
 	 * 最近一次监控时间
 	 */
 	private String monitorTime;
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getName() {
 		return name;

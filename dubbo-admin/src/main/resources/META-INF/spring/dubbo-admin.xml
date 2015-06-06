@@ -42,5 +42,9 @@
 	</bean>
 
 	<bean id="governanceCache" class="com.alibaba.dubbo.governance.sync.RegistryServerSync" />
+	
+	<!-- 节点监控引用 -->
+	<dubbo:reference id="nodemonitorService" interface="com.dream.portal.nodemonitor.NodemonitorService" check="false" />
+
 
 </beans>

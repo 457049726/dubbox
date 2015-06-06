@@ -98,7 +98,7 @@
 				<ul>
 					#foreach ($tab in $tabs)
 						#if($tool.checkUrl($currentUser,"/governance/$tab"))
-						<li id="$tab"#if($_type == $tab) class="active"#else style="color: white;"#end onclick="window.location.href='#if($_method == "add" && $id)../../#elseif($_method == "show" || $_method == "add" || $_method == "addMock")../#elseif($_method == "edit" || $_method == "editMock" || $_method == "routed" || $_method == "notified" || $_method == "preview" || $_method == "routeselect" || $_method == "testrun" || $_method == "notified")../../#{end}$tab';">$i18n.get($tab)</li>
+						<li id="$tab"#if($_type == $tab) class="active"#else style="color: white;"#end onclick="window.location.href='#if($_method == "add" && $id)../../#elseif($_method == "show" || $_method == "add" || $_method == "addMock")../#elseif($_method == "queryById" || $_method == "edit" || $_method == "editMock" || $_method == "routed" || $_method == "notified" || $_method == "preview" || $_method == "routeselect" || $_method == "testrun" || $_method == "notified")../../#{end}$tab';">$i18n.get($tab)</li>
 						#end
 					#end
 				</ul>

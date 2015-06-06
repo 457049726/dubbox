@@ -21,6 +21,7 @@
 		<property name="pwd" value="piao" />
 		<property name="username" value="dream_cai_piao" />
 		<property name="url" value="jdbc:oracle:thin:@192.168.0.110:1521:orcl" />
+		<property name="ip" value="127.0.0.1" />
 	</bean>
 	
 	<!-- 服务监控节点 -->
@@ -31,26 +32,39 @@
 		<property name="interval" value="30" />
 		<property name="url" value="url" />
 		<property name="servReference" value="newdreamRpcService" />
+		<property name="ip" value="127.0.0.1" />
 	</bean>
 	
 	<!-- web监控节点 -->
 	<bean id="webMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.WebMonitorConf" >
-		<property name="name" value="rpcServ" />
+		<property name="name" value="webServer" />
 		<property name="isOpen" value="0" />
 		<property name="timeOut" value="30" />
 		<property name="interval" value="30" />
 		<property name="url" value="url" />
 		<property name="method" value="post" />
+		<property name="ip" value="127.0.0.1" />
 	</bean>
 	
-	<!-- 缓存监控节点 -->
-	<bean id="memcachedMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.MemcachedMonitorConf" >
-		<property name="name" value="rpcServ" />
-		<property name="isOpen" value="0" />
+		<!-- 缓存监控节点 1-->
+	<bean id="memcachedMonitorConf1" class="com.dream.portal.dubboext.monitor.node.conf.MemcachedMonitorConf" >
+		<property name="name" value="memcachedMonitor1" />
+		<property name="isOpen" value="1" />
 		<property name="timeOut" value="30" />
 		<property name="interval" value="30" />
-		<property name="url" value="url" />
+		<property name="url" value="127.0.0.1:9998" />
+		<property name="ip" value="127.0.0.1" />
 	</bean>
+	<!-- 缓存监控节点2 -->
+	<bean id="memcachedMonitorConf2" class="com.dream.portal.dubboext.monitor.node.conf.MemcachedMonitorConf" >
+		<property name="name" value="memcachedMonitor2" />
+		<property name="isOpen" value="1" />
+		<property name="timeOut" value="30" />
+		<property name="interval" value="30" />
+		<property name="url" value="127.0.0.1:9999" />
+		<property name="ip" value="127.0.0.1" />
+	</bean>
+	
 	
 	<!-- 监控节点配置 -->
 	<bean id="nodeMonitorConf" class="com.dream.portal.dubboext.monitor.node.conf.NodeMonitorConf" >
@@ -67,8 +81,11 @@
     			<entry key="webMonitorConf">
     				<ref bean="webMonitorConf" />
     			</entry>
-    			<entry key="memcachedMonitorConf">
-    				<ref bean="memcachedMonitorConf" />
+    			<entry key="memcachedMonitorConf1">
+    				<ref bean="memcachedMonitorConf1" />
+    			</entry>
+    			<entry key="memcachedMonitorConf2">
+    				<ref bean="memcachedMonitorConf2" />
     			</entry>
    			</map>
 		</property>
