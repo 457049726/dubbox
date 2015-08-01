@@ -83,14 +83,14 @@
 		<div class="tab" id="Tab2">
 			#set($tabs = [])
 			#if($service && $service != '*')
-				#set($tabs = ["providers", "consumers", "applications", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
+				#set($tabs = ["providers", "consumers", "nodes","applications", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
 			#elseif($address && $address != '*')
-				#set($tabs = ["providers", "consumers", "routes", "accesses", "weights"])
+				#set($tabs = ["providers", "consumers", "nodes","routes", "accesses", "weights"])
 			#elseif($application && $application != '*')
 				#set($tabs = ["services", "addresses", "overrides"])
 			#else
 				#if($_type != "services" && $_type != "applications" && $_type != "addresses")
-					#set($tabs = ["providers", "consumers", "routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
+					#set($tabs = ["providers", "consumers", "nodes","routes", "overrides", "accesses", "weights", "loadbalances", "owners"])
 				#end
 			#end
 			#if($tabs.size() > 0)
@@ -98,7 +98,7 @@
 				<ul>
 					#foreach ($tab in $tabs)
 						#if($tool.checkUrl($currentUser,"/governance/$tab"))
-						<li id="$tab"#if($_type == $tab) class="active"#else style="color: white;"#end onclick="window.location.href='#if($_method == "add" && $id)../../#elseif($_method == "show" || $_method == "add" || $_method == "addMock")../#elseif($_method == "edit" || $_method == "editMock" || $_method == "routed" || $_method == "notified" || $_method == "preview" || $_method == "routeselect" || $_method == "testrun" || $_method == "notified")../../#{end}$tab';">$i18n.get($tab)</li>
+						<li id="$tab"#if($_type == $tab) class="active"#else style="color: white;"#end onclick="window.location.href='#if($_method == "add" && $id)../../#elseif($_method == "show" || $_method == "add" || $_method == "addMock")../#elseif($_method == "queryById" || $_method == "edit" || $_method == "editMock" || $_method == "routed" || $_method == "notified" || $_method == "preview" || $_method == "routeselect" || $_method == "testrun" || $_method == "notified")../../#{end}$tab';">$i18n.get($tab)</li>
 						#end
 					#end
 				</ul>

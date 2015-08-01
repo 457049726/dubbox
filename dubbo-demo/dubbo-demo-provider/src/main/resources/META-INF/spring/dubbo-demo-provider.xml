@@ -22,16 +22,21 @@
 
     <dubbo:application name="demo-provider" owner="programmer" organization="dubbox"/>
 
+ 
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
-
+  <!-- 
+<dubbo:registry address="zookeeper://192.168.254.2:2181"/>
+  -->
     <!--uncomment this if you want to test dubbo's monitor-->
     <!--<dubbo:monitor protocol="registry"/>-->
 
     <!-- here we demonstrate both annotation-based and xml-based configs -->
     <dubbo:annotation package="com.alibaba.dubbo.demo.user.facade" />
-
+ <!--
     <dubbo:protocol name="dubbo" serialization="kryo" optimizer="com.alibaba.dubbo.demo.SerializationOptimizerImpl"/>
-    <!--<dubbo:protocol name="dubbo" serialization="fst" optimizer="com.alibaba.dubbo.demo.SerializationOptimizerImpl"/>-->
+   <dubbo:protocol name="dubbo" serialization="fst" optimizer="com.alibaba.dubbo.demo.SerializationOptimizerImpl"/>-->
+
+<dubbo:protocol name="dubbo" port="20880" />
 
     <!--<dubbo:protocol name="dubbo" serialization="nativejava"/>-->
     <!--<dubbo:protocol name="dubbo" serialization="hessian2"/>-->
