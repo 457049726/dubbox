@@ -1,0 +1,58 @@
+<div class="ico_btn">
+	#if($currentUser.role != "G")
+	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.enable")', 'providers/' + getChecked('ids') + '/enable');} return false;"><img src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.enable")</span></a>
+	<span class="ico_line">|</span>
+	<a href="#" onclick="if(! hasCheckbox('ids')) { showAlert('$i18n.get("empty.list")'); } else if(! hasChecked('ids')) { showAlert('$i18n.get("please.select")'); } else { showConfirm('$i18n.get("confirm.batch.delete")', 'providers/' + getChecked('ids') + '/delete'); } return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("batch.delete")</span></a>
+	#end
+</div>
+<br/>
+<table cellpadding="0" cellspacing="0" class="list list_dubbo" id="table_o">
+<tr>
+	<th width="20"><input type="checkbox" onclick="checkAll('table_o', 'ids', this.checked)" /></th>
+	<th width="120">#if($ip)$i18n.get("service")#else$i18n.get("address")#end: <input type="text" style="width: 60px;" onkeyup="searchTable('table_o', 1, this.value);" onclick="searchTable('table_o', 1, this.value);" />&nbsp;<img src="$rootContextPath.getURI("images/ico_search.png")" width="12" height="12" /></th>
+	<th width="150">节点名</th>
+	<th width="100">节点类型</th>
+	<th width="50">状态</th>
+	<th width="200">监控结果</th>
+	<th width="50">耗时</th>
+	<th width="120">时间</th>
+	#if($currentUser.role != "G")<th>$i18n.get("operation")</th>#end
+</tr>
+#set($providerApplication = "")
+#foreach($node in $nodes)
+<tr>
+	<td><input type="checkbox" name="ids" value="$node.name" /></td>
+	<td>#if($node.ip)$node.ip#end</td>
+	<td>#if ($node.type == "webNode") <a href="nodes/$node.id/queryById"> $node.name</a> #else $node.name #end</td>
+	<td>#if($node.type)$node.type#end</td>
+	<td>#if($node.state)$node.state#else 0 #end</td>
+	<td>#if($node.result)$node.result#else 末知  #end</td>
+	<td>$node.usedTime</td>
+	<td>#if($node.monitorTime)$node.monitorTime #end</td>
+	#if($currentUser.role != "G")
+	<td>
+		#if($currentUser.hasServicePrivilege($provider.service))
+		<a href="providers/$provider.id/edit"><img src="$rootContextPath.getURI("images/ico_edit.png")" width="12" height="12" /><span class="ico_font">$i18n.get("edit")</span></a>
+		<span class="ico_line">|</span>
+		<a href="providers/$provider.id/add"><img src="$rootContextPath.getURI("images/ico_add.png")" width="12" height="12" /><span class="ico_font">$i18n.get("copy")</span></a>
+		<span class="ico_line">|</span>
+		<a href="#" onclick="showConfirm('$i18n.get("confirm.weight.doubling")', '$provider.url', 'providers/$provider.id/doubling'); return false;"><img src="$rootContextPath.getURI("images/ico_up.png")" width="12" height="12" /><span class="ico_font">$i18n.get("weight.doubling")</span></a>
+		<span class="ico_line">|</span>
+		<a href="#" onclick="showConfirm('$i18n.get("confirm.weight.halving")', '$provider.url', 'providers/$provider.id/halving'); return false;"><img src="$rootContextPath.getURI("images/ico_down.png")" width="12" height="12" /><span class="ico_font">$i18n.get("weight.halving")</span></a>
+		<span class="ico_line">|</span>
+		#if($tool.isProviderEnabled($provider))
+		<a href="#" onclick="showConfirm('$i18n.get("confirm.disable")', '$provider.url', 'providers/$provider.id/disable'); return false;"><img src="$rootContextPath.getURI("images/ico_disable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("disable")</span></a>
+		#else
+		<a href="#" onclick="showConfirm('$i18n.get("confirm.enable")', '$provider.url', 'providers/$provider.id/enable'); return false;"><img src="$rootContextPath.getURI("images/ico_enable.png")" width="12" height="12" /><span class="ico_font">$i18n.get("enable")</span></a>
+		#end
+		#if(! $provider.dynamic)
+		<span class="ico_line">|</span>
+		<a href="#" onclick="showConfirm('$i18n.get("confirm.delete")', '$provider.url', 'providers/$provider.id/delete'); return false;"><img src="$rootContextPath.getURI("images/ico_delete.png")" width="12" height="12" /><span class="ico_font">$i18n.get("delete")</span></a>
+		#end
+		#end
+	</td>
+	#end
+</tr>
+#end
+</table>
+<div class="page">$i18n.get("page.total")#if($nodes.size())$nodes.size() #else 0 #end $i18n.get("page.records") </div>
